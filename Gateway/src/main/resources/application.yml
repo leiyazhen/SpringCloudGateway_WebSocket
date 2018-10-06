@@ -1,0 +1,18 @@
+server:
+  port: 8081
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enable: false
+      routes:
+      - id: websocket_sockjs_route
+        uri: http://localhost:8082
+        predicates:
+        - Path=/websocket/info/**
+      - id: webSocketRoute
+        uri: ws://localhost:8082
+        predicates:
+        - Path=/websocket/**
